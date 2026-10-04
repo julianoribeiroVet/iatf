@@ -1,0 +1,17 @@
+{
+  "name": "Calendário IATF JS Rural",
+  "short_name": "IATF",
+  "description": "Calendário de IATF — D0, D8/D7, IATF e DG por lote e retiro, com alerta de conflito de manejos.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#eef1ea",
+  "theme_color": "#223047",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

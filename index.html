@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calendário IATF JS Rural</title>
+<meta name="description" content="Calendário de IATF — D0, D8/D7, IATF e DG por lote e retiro, com alerta de conflito de manejos.">
+<meta name="theme-color" content="#223047">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IATF">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="app">
+  <header class="app-header">
+    <div class="brand-mark">
+      <span class="brand-tag">Manejo reprodutivo</span>
+      <h1>Calendário de IATF</h1>
+      <p class="subtitle">D0 · D8/D7 · IATF · DG — multíparas, primíparas e solteiras até 2 IATFs; novilhas até 3 IATFs.</p>
+    </div>
+    <div class="header-right">
+      <nav class="tabs no-print" role="tablist" id="tabNav">
+        <button class="tab-btn active" data-tab="calendario" type="button">Calendário</button>
+        <button class="tab-btn" data-tab="lotes" type="button">Lotes</button>
+        <button class="tab-btn" data-tab="retiros" type="button">Retiros</button>
+        <button class="tab-btn" data-tab="agenda" type="button">Agenda</button>
+        <button class="tab-btn" data-tab="parametros" type="button">Parâmetros</button>
+        <button class="tab-btn" data-tab="indicadores" type="button">Indicadores</button>
+      </nav>
+      <button class="icon-btn conflict-badge no-print" id="btnConflitos" type="button" hidden>⚠ Conflitos</button>
+      <span class="pdf-status no-print" id="saveStatus"></span>
+      <button class="icon-btn btn-primary no-print" id="btnSalvarGlobal" type="button">✅ Salvar Alterações</button>
+      <button class="icon-btn no-print" id="btnHelp" type="button">Guia de uso</button>
+      <span class="sync-pill no-print off" id="syncPill" title="">● …</span>
+      <span class="user-box no-print" id="userBox" hidden><span id="userEmail"></span><button class="icon-btn btn-sm" id="btnSair" type="button">Sair</button></span>
+    </div>
+  </header>
+
+  <main>
+    <section id="panel-calendario" class="tab-panel active"></section>
+    <section id="panel-lotes" class="tab-panel"></section>
+    <section id="panel-retiros" class="tab-panel"></section>
+    <section id="panel-agenda" class="tab-panel"></section>
+    <section id="panel-parametros" class="tab-panel"></section>
+    <section id="panel-indicadores" class="tab-panel"></section>
+  </main>
+
+  <footer class="app-footer no-print">
+    <span id="syncStatus"><span class="sync-dot off"></span>Verificando sincronização…</span>
+    <span class="mono" id="appVersion"></span>
+    <span>Documento operacional — confira semanalmente lotes, retiros, período e condição dos animais junto ao médico-veterinário.</span>
+  </footer>
+</div>
+
+<dialog id="helpDialog">
+  <div class="help-body">
+    <h2>Guia de uso rápido</h2>
+    <p class="section-hint">Fluxo recomendado para cadastrar lotes, calcular as ressincronizações e imprimir a agenda semanal.</p>
+    <ol>
+      <li><b>1. Ajuste os parâmetros.</b> <span>Confirme os intervalos D0→D8/D7 (novilhas), D8/D7→IATF, IATF→DG e DG→novo D0 na aba Parâmetros.</span></li>
+      <li><b>2. Cadastre os lotes.</b> <span>Na aba Lotes, informe categoria, retiro, período, quantidade e a data do primeiro D0.</span></li>
+      <li><b>3. Confira a agenda.</b> <span>A aba Agenda projeta até 2 IATFs (multíparas/primíparas/solteiras) ou 3 (novilhas) por lote, com status e resultado do DG editáveis.</span></li>
+      <li><b>4. Planeje a semana.</b> <span>Na aba Calendário, altere a data de referência para qualquer dia da semana desejada e imprima.</span></li>
+      <li><b>5. Ressincronize.</b> <span>No DG, informe quantas fêmeas ficaram prenhes — as vazias seguem automaticamente para a próxima IATF, dentro do limite por categoria.</span></li>
+      <li><b>Conflitos de manejo.</b> <span>Manejos diferentes no mesmo retiro e na mesma data geram alerta e só seguem com autorização prévia (nome e motivo). Também é possível alterar a data de um dos manejos — as ações seguintes do lote acompanham.</span></li>
+      <li><b>6. Acompanhe indicadores.</b> <span>A aba Indicadores calcula a taxa de prenhez automaticamente a partir dos resultados de DG lançados.</span></li>
+    </ol>
+    <div class="help-legend" id="helpLegend"></div>
+    <button class="icon-btn btn-primary help-close" id="btnCloseHelp" type="button">Entendi</button>
+  </div>
+</dialog>
+
+<input type="file" id="backupFileInput" accept="application/json,.json" hidden>
+
+<div class="login-screen" id="loginScreen" hidden>
+  <form class="login-card card" id="loginForm" autocomplete="on">
+    <img class="login-logo" src="icons/logo.png" alt="JS Rural">
+    <h2>Calendário de IATF</h2>
+    <p class="section-hint">Entre com sua conta para sincronizar os dados entre celular e computador.</p>
+    <div class="field"><label for="loginEmail">E-mail</label><input class="input" type="email" id="loginEmail" autocomplete="username" required></div>
+    <div class="field"><label for="loginSenha">Senha</label><input class="input" type="password" id="loginSenha" autocomplete="current-password" required></div>
+    <div class="cf-error" id="loginMsg"></div>
+    <button class="icon-btn btn-primary login-btn" id="loginBtn" type="submit">Entrar</button>
+    <a href="#" class="login-link" id="loginEsqueci">Esqueci a senha</a>
+  </form>
+</div>
+
+<div class="update-toast" id="updateToast" hidden>Nova versão do aplicativo disponível. <button class="icon-btn btn-sm btn-primary" id="btnUpdate" type="button">Atualizar</button></div>
+
+<dialog id="cfDialog"><div class="cf-body" id="cfDialogBody"></div></dialog>
+
+
+<script src="vendor/supabase.js"></script>
+<script src="vendor/jspdf.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/logo.js"></script>
+<script src="js/store.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pwa.js"></script>
+</body>
+</html>

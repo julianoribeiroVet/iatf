@@ -1,0 +1,131 @@
+{
+  "app": "Calendário IATF JS Rural",
+  "versao": 2,
+  "geradoEm": "2026-10-03T23:40:00.000Z",
+  "params": {
+    "d0d7Novilha": 7,
+    "d0d8": 8,
+    "d7iatfNovilha": 2,
+    "d8iatf": 2,
+    "dgd0": 0,
+    "gestacao": 290,
+    "iatfdg": 32,
+    "maxIatfNormal": 2,
+    "maxIatfNovilha": 3
+  },
+  "lotes": [
+    {
+      "ativo": true,
+      "categoria": "Multípara",
+      "dataD0": "2026-10-06",
+      "nome": "Lt 03 - PL - Mult. Cr9 - EM 26/27",
+      "obs": "",
+      "periodo": "Manhã",
+      "qtd": 81,
+      "responsavel": "Juliano",
+      "retiro": "Placa",
+      "situacao": "Planejado",
+      "id": "b8dzegioteqofihh5bko"
+    },
+    {
+      "ativo": true,
+      "categoria": "Multípara",
+      "dataD0": "2026-10-06",
+      "nome": "Lt 04 - PL - Mult. Cr8 - EM 26/27",
+      "obs": "",
+      "periodo": "Tarde",
+      "qtd": 90,
+      "responsavel": "Juliano",
+      "retiro": "Placa",
+      "situacao": "Planejado",
+      "id": "d5e5ojcu6twgg3slc4n0"
+    },
+    {
+      "ativo": true,
+      "categoria": "Multípara",
+      "dataD0": "2026-10-05",
+      "nome": "Lt 02 - PL - Mult. Cr8 - EM 26/27",
+      "obs": "",
+      "periodo": "Tarde",
+      "qtd": 90,
+      "responsavel": "Juliano",
+      "retiro": "Placa",
+      "situacao": "Planejado",
+      "id": "if6ak7biocd9jp3283q8"
+    },
+    {
+      "ativo": true,
+      "categoria": "Multípara",
+      "dataD0": "2026-10-06",
+      "nome": "Lt 02 - PO - Mult. Cr8-9 - EM 26/27",
+      "obs": "",
+      "periodo": "Manhã",
+      "qtd": 80,
+      "responsavel": "Juliano",
+      "retiro": "Pontal",
+      "situacao": "Planejado",
+      "id": "lhs5d4klecbi1sxy6dx5"
+    },
+    {
+      "ativo": true,
+      "categoria": "Multípara",
+      "criadoEm": 1789076904066,
+      "dataD0": "2026-10-06",
+      "nome": "Lt 02 - AF - Mult. CR9 - EM 26/27",
+      "obs": "",
+      "periodo": "Tarde",
+      "qtd": 81,
+      "responsavel": "Juliano",
+      "retiro": "Água Funda",
+      "situacao": "Planejado",
+      "id": "o3z95mwuaxw14aww7pyi"
+    },
+    {
+      "ativo": true,
+      "categoria": "Multípara",
+      "dataD0": "2026-10-05",
+      "nome": "Lt 01 - AF - Mult. Cr8 - EM 26/27",
+      "obs": "",
+      "periodo": "Tarde",
+      "qtd": 72,
+      "responsavel": "Juliano",
+      "retiro": "Água Funda",
+      "situacao": "Planejado",
+      "id": "qtk9zy9eheu2hp7zxmin"
+    },
+    {
+      "ativo": true,
+      "categoria": "Multípara",
+      "dataD0": "2026-10-05",
+      "nome": "Lt 01 - PO - Mult. Cr Vários - EM 26/27",
+      "obs": "",
+      "periodo": "Manhã",
+      "qtd": 45,
+      "responsavel": "Juliano",
+      "retiro": "Pontal",
+      "situacao": "Planejado",
+      "id": "yrp8uvn7ewztu9j1di28"
+    },
+    {
+      "ativo": true,
+      "categoria": "Multípara",
+      "dataD0": "2026-10-05",
+      "nome": "Lt 01 - PL - Mult. Cr8 - EM 26/27",
+      "obs": "",
+      "periodo": "Manhã",
+      "qtd": 63,
+      "responsavel": "Juliano",
+      "retiro": "Placa",
+      "situacao": "Planejado",
+      "id": "zfr0tpaf1k5v8alhf8ze"
+    }
+  ],
+  "overrides": {
+    "qtk9zy9eheu2hp7zxmin-c1-DG": {
+      "obs": "",
+      "qtdPrenhe": "",
+      "status": "Planejado"
+    }
+  },
+  "autorizacoes": {}
+}
